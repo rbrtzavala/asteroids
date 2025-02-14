@@ -9,7 +9,9 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
     dt = 0
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    half_screen_width = SCREEN_WIDTH / 2
+    half_screen_height = SCREEN_HEIGHT / 2
+    player = Player(half_screen_width, half_screen_height)
     print("Starting asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
