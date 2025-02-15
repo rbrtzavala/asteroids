@@ -2,7 +2,9 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import *
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 from player import Player
 
 def main():
@@ -18,29 +20,35 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # Create Sprit Groups
-    updatable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
+    
 
     # Add Player class to Groups
-    updatable.add(player)
     drawable.add(player)
+    updatable.add(player)
 
     # Add containers class variable
-    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    Player.containers = (drawable, updatable)
+    
+    AsteroidField()
+
     
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill(000, rect=None)
-        # drawable.draw(screen)
+
         for d in drawable:
             d.draw(screen)
-        # player.draw(screen)
+
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         updatable.update(dt)
-        # player.update(dt)
 
 if __name__ == "__main__":
     main()
