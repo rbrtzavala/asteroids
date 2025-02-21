@@ -51,13 +51,13 @@ def main():
         dt = clock.tick(60) / 1000
         updatable.update(dt)
         
-        for a in asteroids:
-            if a.collision(player):
+        for asteroid in asteroids:
+            if asteroid.collision(player):
                 sys.exit("Game over!")
-            for s in shots:
-                if s.collision(a):
-                    s.kill()
-                    a.kill()
+            for shot in shots:
+                if asteroid.collision(shot):
+                    asteroid.kill()
+                    shot.kill()
                 
 
 if __name__ == "__main__":
